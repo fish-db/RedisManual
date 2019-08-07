@@ -1,3 +1,1 @@
-# Redis Manual
-
-Redis 命令手册
+# Redis 命令手册

@@ -9,14 +9,15 @@ SELECT 0
 // 将foo元素移动到2号库
 move foo 2
 
-// 现在它的值是 NIL
+// 在当前数据库中，它的值为 NIL
 GET foo
 
 SELECT 2
 GET foo // 可以在2号库拿到它的值了
 
+// 获得当前数据库中的key的数量
 DBSIZE
-// 数据库key的数量
+// O(1)
 ```
 
 ### Key操作
@@ -25,18 +26,22 @@ DBSIZE
 // 获得符合匹配规则的key
 KEYS *
 // 结果可能会很多，不建议在生产环境中使用
+// O(n)
   
 KEYS f*
 // 匹配f开头的键
   
 EXISTS key1
 // 判断key1是否存在：0不存在；1存在
+// O(1)
+
+type key
+// 返回数据的类型
+// O(1)
 ```
 
 
-
 ### 过期时间
-
 ```js
 SET bar 'should EXPIRE'
 TTL bar  // -1: means forever, never EXPIRE
